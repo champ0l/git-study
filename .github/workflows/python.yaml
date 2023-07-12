@@ -13,14 +13,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
       - name: Display Python version
-        run: python -c "import sys; print(sys.version)"
-        id: display_version
+        run: |
+          python -c "import sys; print(sys.version)" > ${{ github.workspace }}/python-version.txt
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: python-versions
-          path: ./python-version.txt
+          path: ${{ github.workspace }}/python-version.txt
