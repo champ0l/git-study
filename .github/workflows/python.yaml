@@ -19,9 +19,9 @@ jobs:
       - name: Display Python version
         run: |
           python -c "import sys; print(sys.version)" > python-version.txt
+        working-directory: ${{ github.workspace }}
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: python-versions
           path: python-version.txt
-
